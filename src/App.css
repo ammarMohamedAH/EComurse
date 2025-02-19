@@ -1,0 +1,16 @@
+.slick-next{
+    display: none !important;
+}
+.slick-prev{
+    display: none !important;
+}
+.product:hover,.card:hover{
+    box-shadow: 1px 1px 10px #4fa74f;
+}
+
+@media (min-width: 400px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
