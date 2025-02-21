@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import useQueryCart, { getCart } from "../../Hooks/useQueryCart";
 import Loading from "./../Loading/Loading";
-import  useMutationDel, { clearCart, deleteItemFromCart, updateCount } from "../../Hooks/useMutationDel";
+import useMutationDel, { clearCart, deleteItemFromCart, updateCount } from "../../Hooks/useMutationDel";
 import img from "../../assets/empty-cart-yellow - Copy.png";
 import Payment from "../Paymet/Payment";
 import { CartContext } from "../../context/CarContext";
@@ -9,30 +9,29 @@ import toast from "react-hot-toast";
 
 export default function Cart() {
   const { setNumOfItems } = useContext(CartContext);
-  const { data, isLoading, isError ,error} = useQueryCart(getCart);
+  const { data, isLoading, isError, error } = useQueryCart(getCart);
 
-  
   const { mutate, isPending } = useMutationDel(deleteItemFromCart);
   const { mutate: mutateClear, isPending: isPendingClear } = useMutationDel(clearCart);
   const { mutate: mutateCount, isPending: isPendingCount } = useMutationDel(updateCount);
   const [isOpen, setIsOpen] = useState(false);
 
-  
   useEffect(() => {
     if (data?.data?.numOfCartItems !== undefined) {
       setNumOfItems(data.data.numOfCartItems);
     }
   }, [data, setNumOfItems]);
 
- 
-  if (isError) {
-    toast.error(error.message);
-  }
+  useEffect(() => {
+    if (isError) {
+      toast.error(error.message);
+    }
+  }, [isError, error]);
 
   return (
     <div>
       {(isPending || isPendingClear || isLoading || isPendingCount) && <Loading />}
-      
+
       <section className="py-8 antialiased dark:bg-gray-900 md:py-16">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Cart Shop</h2>
@@ -63,8 +62,8 @@ export default function Cart() {
                           >
                             -
                           </button>
-                          
-                          <input type="text" className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white" disabled placeholder={prod.count} />
+
+                          <input type="text" className="w-10 shrink-0 border-0 bg-transparent text-center text-sm font-medium text-gray-900 focus:outline-none focus:ring-0 dark:text-white" disabled value={prod.count} />
 
                           <button
                             onClick={() => mutateCount({ productId: prod.product._id, count: prod.count + 1 })}
@@ -121,7 +120,11 @@ export default function Cart() {
                     </dl>
                   </div>
 
-                  <button className="text-white bg-green-700 px-5 py-2.5 rounded-lg" onClick={() => setIsOpen(!isOpen)} disabled={isPending || isPendingClear}>
+                  <button
+                    className="text-white bg-green-700 px-5 py-2.5 rounded-lg"
+                    onClick={() => setIsOpen(!isOpen)}
+                    disabled={isPending || isPendingClear || isPendingCount}
+                  >
                     {isOpen ? "Hide Payment" : "Proceed to Checkout"}
                   </button>
 

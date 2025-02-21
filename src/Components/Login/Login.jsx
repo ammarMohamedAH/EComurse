@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { userToken } from './../../context/UserContext';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Login() {
 
@@ -119,7 +119,7 @@ onSubmit: handelLogin
         {formik.errors.password}
       </div>:""}
       <div className="flex justify-between">
-        <a href="#">forget your password ?</a>
+        <Link to="/reset-password">forget your password ?</Link>
         <button
         type="submit"
         id="submit"

@@ -16,6 +16,10 @@ import Cart from './Components/Cart/Cart';
 import Wishlist from './Components/Wishlist/Wishlist'
 import ProtuctedRoute from './Components/ProtuctedRoute.jsx/ProtuctedRoute'
 import ProtuctedRoute2 from './Components/ProtectedRoute2/ProtectedRoute2'
+import Notfound from './Components/NotFound/Notfound'
+import ResetPassword from './Components/Reset-password.jsx/ResetPassword'
+import VerifyCode from './Components/Verify-code/VerifyCode'
+import ChangePassword from './Components/ChangePassword/ChangePassword'
 
 function App() {
   
@@ -32,6 +36,10 @@ function App() {
     {path:'/allorders',element:<ProtuctedRoute><Home></Home></ProtuctedRoute>},
     {path:'/brands',element:<ProtuctedRoute><Brands></Brands></ProtuctedRoute>},
     {path:'/cart',element:<ProtuctedRoute><Cart></Cart></ProtuctedRoute>},
+    {path:'/reset-password',element:<ResetPassword></ResetPassword>},
+    {path:'/verify-code',element:<VerifyCode></VerifyCode>},
+    {path:'/changePassword',element:<ChangePassword></ChangePassword>},
+    {path:'*',element:<Notfound></Notfound>},
   ]}])
 
   return (
