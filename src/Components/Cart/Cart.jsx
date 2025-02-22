@@ -127,7 +127,8 @@ export default function Cart() {
                   >
                     {isOpen ? "Hide Payment" : "Proceed to Checkout"}
                   </button>
-
+                  {console.log(data?.data)
+                  }
                   {isOpen && <Payment cartId={data?.data?.cartId} />}
                 </div>
               </div>

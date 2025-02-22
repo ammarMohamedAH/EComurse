@@ -1,15 +1,14 @@
 import React from "react";
-import useCartMutation from "../../Hooks/useCartMutation";
-import usePayment from "../../Hooks/usePayment";
 import { useFormik } from "formik";
-// import * as motion from "motion/react-client"
 import * as motion from "motion/react-client";
+import usePaymentMutation from "../../Hooks/usePayment";
 
 export default function Payment({ cartId }) {
-  let { mutate, data } = useCartMutation(usePayment);
+  let { mutate, data } = usePaymentMutation();
   function handelePayment(shippingAddress) {
     mutate({ cartId, shippingAddress });
   }
+console.log(data);
 
   if (data?.data?.status) window.location.href = data?.data?.session?.url;
 
@@ -75,7 +74,7 @@ export default function Payment({ cartId }) {
               onChange={formik.handleChange}
               className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
-              required
+              
             />
             <label
               htmlFor="floating_repeat_password"
