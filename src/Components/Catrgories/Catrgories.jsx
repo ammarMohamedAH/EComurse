@@ -17,7 +17,7 @@ export default function Catrgories() {
 
 
   return (
-    <div className="grid grid-cols-3 gap-6 p-24">
+    <div className="grid md:grid-cols-3 gap-6 sm:p-24 px-5">
         {data?.data?.data.map((cat,index)=><Cat key={index} cat={cat}></Cat>)}
       
     </div>
