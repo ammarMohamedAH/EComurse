@@ -60,7 +60,7 @@ onSubmit: handelLogin
  },[formik.values.email,formik.values.password,formik.errors.email,formik.errors.password])
 
   return (
-    <div className="container pt-20 px-20">
+    <div className="container py-20 md:px-20">
     <h2 className="text-[2rem] font-semibold text-gray-700 my-3">Login Now</h2>
 
     <form className="max-w-full mx-auto" onSubmit={formik.handleSubmit}>
@@ -118,7 +118,7 @@ onSubmit: handelLogin
       >
         {formik.errors.password}
       </div>:""}
-      <div className="flex justify-between">
+      <div className="flex justify-between md:flex-row flex-col gap-4">
         <Link to="/reset-password">forget your password ?</Link>
         <button
         type="submit"
