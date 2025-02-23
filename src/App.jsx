@@ -28,7 +28,7 @@ function App() {
   let routs = createBrowserRouter([{path:'/',element:<Layout></Layout>,children:[
     {index:true,element:<ProtuctedRoute2><Login></Login></ProtuctedRoute2>},
     {path:'/login',element:<ProtuctedRoute2><Login></Login></ProtuctedRoute2>},
-    {path:'/regester',element:<ProtuctedRoute2><Register></Register></ProtuctedRoute2>},
+    {path:'/register',element:<ProtuctedRoute2><Register></Register></ProtuctedRoute2>},
     {path:'/home',element:<ProtuctedRoute><Home></Home></ProtuctedRoute>},
     {path:'/product',element:<ProtuctedRoute><ProductItem></ProductItem></ProtuctedRoute>},
     {path:'/wish',element:<ProtuctedRoute><Wishlist></Wishlist></ProtuctedRoute>},
