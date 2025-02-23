@@ -43,14 +43,14 @@ export default function Wishlist() {
   if (isLoading || isPending || isPendingDel) return <Loading />;
 
   return (
-    <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+    <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8 px-10">
       <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
         <div className="space-y-6">
           {data?.data?.data?.length > 0 ? (
             data.data.data.map((prod) => (
               <div
                 key={prod.id}
-                className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 grid grid-cols-5 grid-rows-3 gap-4"
+                className="rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800 md:grid md:grid-cols-5 md:grid-rows-3 gap-4 p-5 flex flex-col justify-center items-center"
               >
                 <img
                   className="h-full w-24 max-w-full row-span-3"

@@ -11,7 +11,6 @@ export default function Allorders() {
     "Alloreder"
   );
 
-  console.log(data?.data);
 
   return (
     <div className="container">
