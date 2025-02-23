@@ -19,6 +19,8 @@ export default function Cart() {
   useEffect(() => {
     if (data?.data?.numOfCartItems !== undefined) {
       setNumOfItems(data.data.numOfCartItems);
+      console.log(data);
+      
     }
   }, [data, setNumOfItems]);
 
@@ -46,7 +48,7 @@ export default function Cart() {
                 <div className="space-y-6">
                   {data?.data?.data?.products.map((prod) => (
                     <div key={prod.product._id} className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
-                      <div className="space-y-4 md:flex md:items-center md:justify-between md:gap-6 md:space-y-0">
+                      <div className="space-y-4 flex-col justify-center md:flex-row flex items-center md:justify-between md:gap-6 md:space-y-0">
                         <img className="h-24 w-24 dark:hidden max-w-full" src={prod.product.imageCover} alt={prod.product.title} />
 
                         <div className="flex items-center">
@@ -79,7 +81,7 @@ export default function Cart() {
                           <p className="text-base font-bold text-gray-900 dark:text-white">${prod.price}</p>
                         </div>
 
-                        <div className="w-full min-w-0 flex-1 md:max-w-md">
+                        <div className="w-full min-w-0 flex-1 md:max-w-md text-center">
                           <p className="text-base font-medium text-gray-900 hover:underline dark:text-white">{prod.product.title}</p>
                           <button
                             type="button"

@@ -20,6 +20,7 @@ import Notfound from './Components/NotFound/Notfound'
 import ResetPassword from './Components/Reset-password.jsx/ResetPassword'
 import VerifyCode from './Components/Verify-code/VerifyCode'
 import ChangePassword from './Components/ChangePassword/ChangePassword'
+import Allorders from './Components/Allorders/Allorders'
 
 function App() {
   
@@ -33,7 +34,7 @@ function App() {
     {path:'/wish',element:<ProtuctedRoute><Wishlist></Wishlist></ProtuctedRoute>},
     {path:'/productdetails/:id',element:<ProtuctedRoute><ProductDetails></ProductDetails></ProtuctedRoute>},
     {path:'/catrgories',element:<ProtuctedRoute><Catrgories></Catrgories></ProtuctedRoute>},
-    {path:'/allorders',element:<ProtuctedRoute><Home></Home></ProtuctedRoute>},
+    {path:'/allorders',element:<ProtuctedRoute><Allorders></Allorders></ProtuctedRoute>},
     {path:'/brands',element:<ProtuctedRoute><Brands></Brands></ProtuctedRoute>},
     {path:'/cart',element:<ProtuctedRoute><Cart></Cart></ProtuctedRoute>},
     {path:'/reset-password',element:<ResetPassword></ResetPassword>},

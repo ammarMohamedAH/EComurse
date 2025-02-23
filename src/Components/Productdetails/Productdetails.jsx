@@ -5,7 +5,7 @@ import useCartMutation, { addToCart } from "../../Hooks/useCartMutation";
 import toast from "react-hot-toast";
 import useApidata from "../../Hooks/useApidata";
 import useMutationWish, { addToWish } from "../../Hooks/useMutationWish";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CarContext";
 
 export default function ProductDetails() {
@@ -99,20 +99,20 @@ export default function ProductDetails() {
 
   return (
     <div className="container pDetails px-24">
-      <div className="flex items-center gap-6">
-        <div className="w-1/4">
+      <div className="flex flex-col md:flex-row items-center gap-6">
+        <div className="md:w-1/4 w-full">
           <Slider {...settings}>
             {data?.data?.data.images?.map((img, index) => (
               <img
                 src={img}
-                key={img}
+                key={index}
                 className="w-full my-6"
                 alt={`slider image ${index + 1}`}
               />
             ))}
           </Slider>
         </div>
-        <div className="w-3/4">
+        <div className="md:w-3/4">
           <h2 className="text-[2rem] font-bold my-4">
             {data?.data?.data.title}
           </h2>
@@ -128,12 +128,12 @@ export default function ProductDetails() {
               </span>
             </div>
           </div>
-          <div className="w-full flex items-center">
+          <div className="w-full flex items-center justify-between">
             <button
               onClick={() => {
                 mutate(id);
               }}
-              className="w-3/4 mx-auto block bg-green-500 transition duration-200 hover:bg-green-600 py-2 rounded-md text-white my-3"
+              className="md:w-3/4 px-4 md:px-0 md:mx-auto block bg-green-500 transition duration-200 hover:bg-green-600 py-2 rounded-md text-white my-3"
             >
               + Add
             </button>
