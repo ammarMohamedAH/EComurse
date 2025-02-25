@@ -18,3 +18,8 @@
     z-index: 9999;
     border:1px solid black;
 }
+
+.landing{
+    /* background-color: rgb(30, 248, 30); */
+    /* clip-path: circle(70% at 50% -50%); */
+}

@@ -21,12 +21,13 @@ import ResetPassword from './Components/Reset-password.jsx/ResetPassword'
 import VerifyCode from './Components/Verify-code/VerifyCode'
 import ChangePassword from './Components/ChangePassword/ChangePassword'
 import Allorders from './Components/Allorders/Allorders'
+import Landing from './Components/Landing/Landing'
 
 function App() {
   
   
   let routs = createBrowserRouter([{path:'/',element:<Layout></Layout>,children:[
-    {index:true,element:<ProtuctedRoute2><Login></Login></ProtuctedRoute2>},
+    {index:true,element:<ProtuctedRoute2><Landing></Landing></ProtuctedRoute2>},
     {path:'/login',element:<ProtuctedRoute2><Login></Login></ProtuctedRoute2>},
     {path:'/register',element:<ProtuctedRoute2><Register></Register></ProtuctedRoute2>},
     {path:'/home',element:<ProtuctedRoute><Home></Home></ProtuctedRoute>},
