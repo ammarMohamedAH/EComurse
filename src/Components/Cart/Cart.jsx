@@ -6,6 +6,7 @@ import img from "../../assets/empty-cart-yellow - Copy.png";
 import Payment from "../Paymet/Payment";
 import { CartContext } from "../../context/CarContext";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
   const { setNumOfItems } = useContext(CartContext);
@@ -33,7 +34,9 @@ export default function Cart() {
   return (
     <div>
       {(isPending || isPendingClear || isLoading || isPendingCount) && <Loading />}
-
+<Helmet>
+                    <title>Cart</title>
+                  </Helmet>
       <section className="py-8 antialiased dark:bg-gray-900 md:py-16">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Cart Shop</h2>

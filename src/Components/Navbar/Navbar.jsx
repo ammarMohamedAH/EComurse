@@ -19,7 +19,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="fixed-top bg-[#f8f9fa] border-gray-200 dark:bg-gray-900 sticky top-0 z-50">
+    <nav className="fixed-top bg-[#f8f9fa] border-gray-200 dark:bg-gray-900 sticky top-0 z-40">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 lg:flex-row flex-col">
       <div className="flex justify-between items-center w-full lg:w-[fit-content]">
       <NavLink to="/" className="flex items-center space-x-3 rtl:space-x-reverse">

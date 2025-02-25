@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { userToken } from './../../context/UserContext';
+import { Helmet } from "react-helmet";
 
 export default function Register() {
 
@@ -54,6 +55,9 @@ onSubmit: handelRegester
  
   return (
     <div className="container">
+      <Helmet>
+              <title>Regester</title>
+            </Helmet>
       <h2 className="text-[1.5rem] font-bold my-3">Regester Now:</h2>
 
       <form className="max-w-md mx-auto" onSubmit={formik.handleSubmit}>

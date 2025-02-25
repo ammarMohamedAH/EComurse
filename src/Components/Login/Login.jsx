@@ -4,6 +4,7 @@ import { useContext, useEffect, useState } from "react";
 import * as Yup from "yup";
 import { userToken } from './../../context/UserContext';
 import { Link, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Login() {
 
@@ -61,6 +62,9 @@ onSubmit: handelLogin
 
   return (
     <div className="container py-20 md:px-20">
+      <Helmet>
+              <title>Login</title>
+            </Helmet>
     <h2 className="text-[2rem] font-semibold text-gray-700 my-3">Login Now</h2>
 
     <form className="max-w-full mx-auto" onSubmit={formik.handleSubmit}>

@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import Loading from "../Loading/Loading";
+import { Helmet } from "react-helmet";
 
 function resetPass({ email, newPassword }) {
   return axios
@@ -32,6 +33,9 @@ export default function ChangePassword() {
 
   return (
     <div className="container pt-20 px-20">
+      <Helmet>
+                          <title>Change Password</title>
+                        </Helmet>
       <h2 className="text-[2rem] font-semibold text-gray-700 my-3">Reset your Password</h2>
 
       {isLoading ? (

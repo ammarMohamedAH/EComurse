@@ -5,6 +5,7 @@ import Loading from "../Loading/Loading";
 import toast from "react-hot-toast";
 import useMutationWishDel from "../../Hooks/useMutationWishDel";
 import { CartContext } from "../../context/CarContext";
+import { Helmet } from "react-helmet";
 
 export default function Wishlist() {
   let { data, isError, error, isLoading } = useWishItem();
@@ -44,6 +45,9 @@ export default function Wishlist() {
 
   return (
     <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8 px-10">
+      <Helmet>
+                    <title>Wishlist</title>
+                  </Helmet>
       <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
         <div className="space-y-6">
           {data?.data?.data?.length > 0 ? (

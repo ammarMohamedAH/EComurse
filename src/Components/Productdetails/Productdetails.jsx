@@ -7,6 +7,7 @@ import useApidata from "../../Hooks/useApidata";
 import useMutationWish, { addToWish } from "../../Hooks/useMutationWish";
 import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../../context/CarContext";
+import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
   let { id } = useParams();
@@ -99,6 +100,9 @@ export default function ProductDetails() {
 
   return (
     <div className="container pDetails px-24">
+      <Helmet>
+                    <title>{data?.data?.data.title} Details</title>
+                  </Helmet>
       <div className="flex flex-col md:flex-row items-center gap-6">
         <div className="md:w-1/4 w-full">
           <Slider {...settings}>

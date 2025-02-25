@@ -5,6 +5,7 @@ import React from "react";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import { Helmet } from "react-helmet";
 
 function resetpass({ email }) {
   return axios
@@ -33,6 +34,9 @@ export default function ResetPassword() {
 
   return (
     <div className="container">
+      <Helmet>
+                          <title>Reset Password</title>
+                        </Helmet>
       {isLoading ? (
         <Loading /> 
       ) : (

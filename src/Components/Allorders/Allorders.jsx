@@ -1,5 +1,6 @@
 import React from "react";
 import useApidata from "./../../Hooks/useApidata";
+import { Helmet } from "react-helmet";
 
 export default function Allorders() {
   const token = localStorage.getItem("token");
@@ -14,6 +15,9 @@ export default function Allorders() {
 
   return (
     <div className="container">
+      <Helmet>
+                          <title>Allorders</title>
+                        </Helmet>
       <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
         {data?.data?.map((order) => (
           <form
