@@ -39,6 +39,10 @@ export default function Product({ prod }) {
     updateWish();
   }
 
+  useEffect(()=>{
+    updateCart();
+    updateWish();
+  },[])
 
   useEffect(() => {
     if (isSuccess) toast.success(data?.data?.message);

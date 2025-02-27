@@ -22,7 +22,7 @@ export const WishProvider = ({ children }) => {
 
  
   useEffect(() => {
-    fetchWish();
+    updateWish();
   }, []);
   
   const updateWish = () => {
