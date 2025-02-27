@@ -1,23 +1,22 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/freshcart-logo.svg";
 import { userToken } from "../../context/UserContext";
 import { FaCartShopping } from "react-icons/fa6";
-import { CartContext } from "../../context/CarContext";
+import { useCart } from "../../context/CarContext";
+import { useWish } from "../../context/WishContext";
 
 export default function Navbar() {
   let { isLogin, setLogin } = useContext(userToken);
-  let { numOfItems } = useContext(CartContext);
+  const { cartItems } = useCart();
+  const { WishItems } = useWish();
   let navigate = useNavigate();
-  
-  const [isMenuOpen, setIsMenuOpen] = useState(false); // State for mobile menu
-  
+  const [isMenuOpen, setIsMenuOpen] = useState(false); 
   function logOut() {
     localStorage.removeItem("token");
     setLogin(null);
     navigate("/login");
   }
-
   return (
     <nav className="fixed-top bg-[#f8f9fa] border-gray-200 dark:bg-gray-900 sticky top-0 z-40">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 lg:flex-row flex-col">
@@ -50,7 +49,11 @@ export default function Navbar() {
                 <div className="lg:flex gap-6 ml-20">
                   <li><NavLink to="/home" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Home</NavLink></li>
                   <li><NavLink to="/cart" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Cart</NavLink></li>
-                  <li><NavLink to="/wish" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Wish List</NavLink></li>
+                  <li className="relative"><NavLink to="/wish" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Wish List </NavLink>
+                  <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-green-500 rounded-md -top-2 -end-2">
+                  {WishItems}
+                      </div>
+                  </li>
                   <li><NavLink to="/product" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Products</NavLink></li>
                   <li><NavLink to="/catrgories" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Categories</NavLink></li>
                   <li><NavLink to="/brands" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Brands</NavLink></li>
@@ -62,7 +65,7 @@ export default function Navbar() {
                       <FaCartShopping />
                       <span className="sr-only">Notifications</span>
                       <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-green-500 rounded-md -top-2 -end-2">
-                        {numOfItems}
+                        {cartItems}
                       </div>
                     </NavLink>
                   </li>

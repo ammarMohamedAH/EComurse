@@ -27,7 +27,6 @@ export default function ProductItem() {
     const filteredProducts = data?.data?.data.filter((prod) =>
         prod?.title?.toLowerCase().includes(search.toLowerCase())
       );
-    //   console.log(filteredProducts);
       
   return (  
     <div className="container  lg:p-24 lg:pt-10">

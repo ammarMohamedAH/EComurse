@@ -4,26 +4,22 @@ import Loading from "./../Loading/Loading";
 import useMutationDel, { clearCart, deleteItemFromCart, updateCount } from "../../Hooks/useMutationDel";
 import img from "../../assets/empty-cart-yellow - Copy.png";
 import Payment from "../Paymet/Payment";
-import { CartContext } from "../../context/CarContext";
+import { useCart } from "../../context/CarContext";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet";
 
 export default function Cart() {
-  const { setNumOfItems } = useContext(CartContext);
   const { data, isLoading, isError, error } = useQueryCart(getCart);
 
-  const { mutate, isPending } = useMutationDel(deleteItemFromCart);
-  const { mutate: mutateClear, isPending: isPendingClear } = useMutationDel(clearCart);
-  const { mutate: mutateCount, isPending: isPendingCount } = useMutationDel(updateCount);
+  const { mutate, isPending,isSuccess } = useMutationDel(deleteItemFromCart);
+  const { mutate: mutateClear, isPending: isPendingClear,isSuccess:isSuccessClear } = useMutationDel(clearCart);
+  const { mutate: mutateCount, isPending: isPendingCount,isSuccess:isSuccessDel } = useMutationDel(updateCount);
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (data?.data?.numOfCartItems !== undefined) {
-      setNumOfItems(data.data.numOfCartItems);
-      console.log(data);
-      
-    }
-  }, [data, setNumOfItems]);
+  const { updateCart } = useCart();
+  if (isSuccess||isSuccessClear) {
+    updateCart(); 
+  }
 
   useEffect(() => {
     if (isError) {

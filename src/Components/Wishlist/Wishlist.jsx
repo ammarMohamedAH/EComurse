@@ -1,10 +1,11 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useWishItem from "../../Hooks/useWishItem";
 import useCartMutation, { addToCart } from "../../Hooks/useCartMutation";
 import Loading from "../Loading/Loading";
 import toast from "react-hot-toast";
 import useMutationWishDel from "../../Hooks/useMutationWishDel";
-import { CartContext } from "../../context/CarContext";
+import { useCart } from "../../context/CarContext";
+import { useWish } from "../../context/WishContext";
 import { Helmet } from "react-helmet";
 
 export default function Wishlist() {
@@ -29,16 +30,18 @@ export default function Wishlist() {
     if (isErrorCart) toast.error(errorCart?.response?.data?.message);
   }, [isSuccess, isErrorCart, dataCar, errorCart]);
 
-  let { setNumOfItems } = useContext(CartContext);
+  const { updateCart } = useCart();
+  if (isSuccess) {
+    updateCart(); 
+  }
 
- 
-  useEffect(() => {
-    if (dataCar?.data?.numOfCartItems !== undefined) {
-      setNumOfItems(dataCar?.data?.numOfCartItems);
-    }
-  }, [dataCar, setNumOfItems]);
+  let { mutate: mutateDel, isPending: isPendingDel,isSuccess:isSuccessSel } = useMutationWishDel();
 
-  let { mutate: mutateDel, isPending: isPendingDel } = useMutationWishDel();
+  const { updateWish } = useWish();
+  if (isSuccessSel) {
+    updateWish(); 
+  }
+
 
 
   if (isLoading || isPending || isPendingDel) return <Loading />;

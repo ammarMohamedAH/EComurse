@@ -3,8 +3,9 @@ import useCartMutation, { addToCart } from "../../Hooks/useCartMutation";
 import toast from "react-hot-toast";
 import Loading from "./../Loading/Loading";
 import useMutationWish, { addToWish } from "../../Hooks/useMutationWish";
-import { useContext, useEffect } from "react";
-import { CartContext } from "../../context/CarContext";
+import { useEffect } from "react";
+import { useCart } from "../../context/CarContext";
+import { useWish } from "../../context/WishContext";
 
 export default function Product({ prod }) {
   let {
@@ -16,11 +17,10 @@ export default function Product({ prod }) {
     ratingsAverage,
     priceAfterDiscount,
   } = prod;
-  
-  let { setNumOfItems } = useContext(CartContext);
 
-  let { data, isError, isSuccess, mutate, error, isPending } = useCartMutation(addToCart);
-  
+  let { data, isError, isSuccess, mutate, error, isPending } =
+    useCartMutation(addToCart);
+
   let {
     data: dataWish,
     mutate: mutateWish,
@@ -30,19 +30,31 @@ export default function Product({ prod }) {
     error: errorWish,
   } = useMutationWish(addToWish);
 
-  useEffect(() => {
-    if (data?.data?.numOfCartItems !== undefined) {
-      setNumOfItems(data?.data?.numOfCartItems);
-    }
-  }, [data, setNumOfItems]);
+  const { updateCart } = useCart();
+  if (isSuccess) {
+    updateCart();
+  }
+  const { updateWish, WishMatrix } = useWish();
+  if (isSuccessWish) {
+    updateWish();
+  }
 
-  
+
   useEffect(() => {
     if (isSuccess) toast.success(data?.data?.message);
     if (isSuccessWish) toast.success(dataWish?.data?.message);
     if (isError) toast.error(error?.response?.data?.message);
     if (isErrorWish) toast.error(errorWish?.response?.data?.message);
-  }, [isSuccess, isSuccessWish, isError, isErrorWish, data, dataWish, error, errorWish]);
+  }, [
+    isSuccess,
+    isSuccessWish,
+    isError,
+    isErrorWish,
+    data,
+    dataWish,
+    error,
+    errorWish,
+  ]);
 
   return (
     <div className="product rounded-lg p-4 cursor-pointer overflow-hidden transition duration-200 group">
@@ -55,12 +67,19 @@ export default function Product({ prod }) {
           <p className="text-md font-medium line-clamp-1">{title}</p>
           <div className="flex flex-wrap flex-row justify-between">
             <div className="flex justify-between">
-              <p className={priceAfterDiscount ? "line-through text-gray-500" : ""}>{price} EGP</p>
+              <p
+                className={
+                  priceAfterDiscount ? "line-through text-gray-500" : ""
+                }
+              >
+                {price} EGP
+              </p>
               <p>{priceAfterDiscount ? `${priceAfterDiscount} EGP` : ""}</p>
             </div>
             <div>
               <span>
-                <i className="fa-solid fa-star text-[#ffc908] text-sm"></i> {ratingsAverage}
+                <i className="fa-solid fa-star text-[#ffc908] text-sm"></i>{" "}
+                {ratingsAverage}
               </span>
             </div>
           </div>
@@ -75,7 +94,8 @@ export default function Product({ prod }) {
         </button>
         <button
           onClick={() => mutateWish(id)}
-          className="text-gray-700 text-[30px] px-2 py-2 float-end"
+          className={` ${WishMatrix?.filter((WishMatrix) => WishMatrix._id === prod._id  
+          ).length != 0 && "text-red-600"} text-[30px] px-2 py-2 float-end`}
         >
           <i className="fa-solid fa-heart"></i>
         </button>

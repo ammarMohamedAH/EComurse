@@ -5,8 +5,9 @@ import useCartMutation, { addToCart } from "../../Hooks/useCartMutation";
 import toast from "react-hot-toast";
 import useApidata from "../../Hooks/useApidata";
 import useMutationWish, { addToWish } from "../../Hooks/useMutationWish";
-import { useContext, useEffect, useState } from "react";
-import { CartContext } from "../../context/CarContext";
+import { useEffect } from "react";
+import { useCart } from "../../context/CarContext";
+import { useWish } from "../../context/WishContext";
 import { Helmet } from "react-helmet";
 
 export default function ProductDetails() {
@@ -37,13 +38,14 @@ export default function ProductDetails() {
     error: errorWish,
   } = useMutationWish(addToWish);
 
-  let { setNumOfItems } = useContext(CartContext);
-
-  useEffect(() => {
-    if (dataMut?.data?.numOfCartItems !== undefined) {
-      setNumOfItems(dataMut?.data?.numOfCartItems);
-    }
-  }, [dataMut, setNumOfItems]);
+  const { updateCart } = useCart();
+  if (isSuccessMutat) {
+    updateCart(); 
+  }
+  const { updateWish,WishMatrix } = useWish();
+  if (isSuccessWish) {
+    updateWish(); 
+  }
 
   useEffect(() => {
     if (isSuccessMutat) toast.success(dataMut?.data?.message);
@@ -142,7 +144,11 @@ export default function ProductDetails() {
               + Add
             </button>
             <button onClick={() => mutateWish(id)}>
+              <div className={` ${WishMatrix?.filter((WishMatrix) => WishMatrix._id === data?.data?.data?._id  
+          ).length != 0 && "text-red-600"} text-xl`}>
+
               <i className="fa-solid fa-heart fa-2xl"></i>
+          </div>
             </button>
           </div>
         </div>
