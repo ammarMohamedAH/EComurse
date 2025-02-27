@@ -50,7 +50,7 @@ export default function Navbar() {
                   <li><NavLink to="/home" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Home</NavLink></li>
                   <li><NavLink to="/cart" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Cart</NavLink></li>
                   <li className="relative"><NavLink to="/wish" className="block text-gray-600 py-2 px-3 hover:text-gray-800">Wish List </NavLink>
-                  <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-green-500 rounded-md -top-2 -end-2">
+                  <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-md -top-2 -end-2">
                   {WishItems}
                       </div>
                   </li>
@@ -64,7 +64,7 @@ export default function Navbar() {
                     <NavLink to="/cart" className="relative inline-flex items-center p-3 text-gray-600 text-3xl">
                       <FaCartShopping />
                       <span className="sr-only">Notifications</span>
-                      <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-green-500 rounded-md -top-2 -end-2">
+                      <div className="absolute inline-flex items-center justify-center w-5 h-5 text-xs font-bold text-white bg-red-500 rounded-md -top-2 -end-2">
                         {cartItems}
                       </div>
                     </NavLink>
